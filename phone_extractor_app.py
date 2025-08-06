@@ -64,7 +64,7 @@ def extract_phone_numbers(pdf_file):
 
 # Streamlit UI
 st.set_page_config(page_title="Phone Number Extractor", layout="centered")
-st.title("📞 Phone Number Extractor from PDF")
+st.title("Phone Number Extractor from PDF")
 
 uploaded_pdf = st.file_uploader("Upload a PDF file", type="pdf")
 
@@ -91,3 +91,4 @@ if uploaded_pdf:
             )
         else:
             st.warning("No phone numbers found.")
+
