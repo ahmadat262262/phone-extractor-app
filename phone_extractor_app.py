@@ -62,8 +62,9 @@ def extract_phone_numbers(pdf_file):
     doc.close()
     return phone_numbers
 
+# Streamlit UI
 st.set_page_config(page_title="Phone Number Extractor", layout="centered")
-st.title("Phone Number Extractor from PDF")
+st.title("📞 Phone Number Extractor from PDF")
 
 uploaded_pdf = st.file_uploader("Upload a PDF file", type="pdf")
 
@@ -71,20 +72,13 @@ if uploaded_pdf:
     with st.spinner("Extracting phone numbers..."):
         phone_numbers = extract_phone_numbers(uploaded_pdf)
         if phone_numbers:
-            st.success(f"✅ Found {len(phone_numbers)} phone number(s):")
-            
-            # Show in chunks
-            for i in range(0, len(phone_numbers), 10):
-                group = phone_numbers[i:i+10]
-                st.code(', '.join(group))
-
-            # Prepare text file
+            # Prepare text content
             output = StringIO()
             for i in range(0, len(phone_numbers), 10):
                 group = phone_numbers[i:i+10]
                 output.write(', '.join(group) + '\n\n\n')  # 3-line gap
 
-            # Create downloadable file
+            # Download button only (no display)
             st.download_button(
                 label="📥 Download Phone Numbers as TXT",
                 data=output.getvalue(),
