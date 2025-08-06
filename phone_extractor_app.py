@@ -99,18 +99,21 @@ st.markdown(
     .developer-credit {
         position: fixed;
         bottom: 10px;
-        right: 15px;
+        left: 15px;
         font-size: 13px;
         color: grey;
         opacity: 0.7;
+        line-height: 1.2;
     }
     </style>
     <div class="developer-credit">
-        Developed by Ahmad Tariq · <a href="mailto:ahmadtariqllc@gmail.com" style="color: grey; text-decoration: none;">ahmadtariqllc@gmail.com</a>
+        Developed by Ahmad Tariq<br>
+        Contact: <a href="mailto:ahmadtariqllc@gmail.com" style="color: grey; text-decoration: none;">ahmadtariqllc@gmail.com</a>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 
 
