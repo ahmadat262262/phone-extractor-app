@@ -1,6 +1,7 @@
 import fitz  # PyMuPDF
 import re
 import streamlit as st
+from io import StringIO
 
 def clean_phone(raw):
     raw = raw.strip()
@@ -62,7 +63,7 @@ def extract_phone_numbers(pdf_file):
     return phone_numbers
 
 st.set_page_config(page_title="Phone Number Extractor", layout="centered")
-st.title("📞 Phone Number Extractor from PDF")
+st.title("Phone Number Extractor from PDF")
 
 uploaded_pdf = st.file_uploader("Upload a PDF file", type="pdf")
 
@@ -71,8 +72,24 @@ if uploaded_pdf:
         phone_numbers = extract_phone_numbers(uploaded_pdf)
         if phone_numbers:
             st.success(f"✅ Found {len(phone_numbers)} phone number(s):")
+            
+            # Show in chunks
             for i in range(0, len(phone_numbers), 10):
                 group = phone_numbers[i:i+10]
                 st.code(', '.join(group))
+
+            # Prepare text file
+            output = StringIO()
+            for i in range(0, len(phone_numbers), 10):
+                group = phone_numbers[i:i+10]
+                output.write(', '.join(group) + '\n\n\n')  # 3-line gap
+
+            # Create downloadable file
+            st.download_button(
+                label="📥 Download Phone Numbers as TXT",
+                data=output.getvalue(),
+                file_name="extracted_phone_numbers.txt",
+                mime="text/plain"
+            )
         else:
             st.warning("No phone numbers found.")
