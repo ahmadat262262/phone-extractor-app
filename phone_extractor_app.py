@@ -71,14 +71,18 @@ uploaded_pdf = st.file_uploader("Upload a PDF file", type="pdf")
 if uploaded_pdf:
     with st.spinner("Extracting phone numbers..."):
         phone_numbers = extract_phone_numbers(uploaded_pdf)
+
         if phone_numbers:
-            # Prepare text content
+            # Show only the count
+            st.success(f"✅ Extracted {len(phone_numbers)} phone numbers.")
+
+            # Create downloadable .txt file
             output = StringIO()
             for i in range(0, len(phone_numbers), 10):
                 group = phone_numbers[i:i+10]
                 output.write(', '.join(group) + '\n\n\n')  # 3-line gap
 
-            # Download button only (no display)
+            # Download button only
             st.download_button(
                 label="📥 Download Phone Numbers as TXT",
                 data=output.getvalue(),
