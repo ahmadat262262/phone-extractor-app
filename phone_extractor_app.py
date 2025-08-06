@@ -99,7 +99,7 @@ st.markdown(
     .developer-credit {
         position: fixed;
         bottom: 10px;
-        right: 15px;
+        left: 15px;
         font-size: 13px;
         color: grey;
         opacity: 0.7;
@@ -109,6 +109,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
 
