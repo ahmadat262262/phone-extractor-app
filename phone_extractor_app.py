@@ -92,3 +92,23 @@ if uploaded_pdf:
         else:
             st.warning("No phone numbers found.")
 
+# Developer credit in bottom-right corner
+st.markdown(
+    """
+    <style>
+    .developer-credit {
+        position: fixed;
+        bottom: 10px;
+        right: 15px;
+        font-size: 13px;
+        color: grey;
+        opacity: 0.7;
+    }
+    </style>
+    <div class="developer-credit">Developed by Ahmad Tariq</div>
+    """,
+    unsafe_allow_html=True
+)
+
+
+
